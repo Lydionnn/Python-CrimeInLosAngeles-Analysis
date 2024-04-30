@@ -26,25 +26,33 @@ The dataset used in this project (`crimes.csv`) is a modified version of the ori
 ## File Structure 📁
 
 - `crimes.csv`: The dataset file.
-- `analysis.ipynb`: Jupyter notebook containing the data analysis.
+- `crimes_la_analysis.ipynb`: Jupyter notebook containing the data analysis, including new insights on crime timing and distributions.
 
 ## Analysis 🔍
 
-Initial analysis includes identifying the most common times for crimes, the areas with the highest frequency of night crimes, and the distribution of victim ages across different crime types.
+Initial analysis includes:
+1. Identifying the most common times for crimes.
+2. Determining the areas with the highest frequency of night crimes.
+3. Analyzing the distribution of victim ages across different crime types.
+4. Exploring the relationship between the types of crimes committed and the ages of the victims.
+5. Assessing the most frequent crimes committed after sundown, to potentially redistribute resources for enhanced night-time policing.
 
-To explore the findings, please refer to the Jupyter notebook `analysis.ipynb` in this repository.
+Please refer to the Jupyter notebook `crimes_la_analysis.ipynb` in this repository to explore the detailed findings.
 
 ## Visualization 📈
 
-We use Python libraries such as Pandas, NumPy, Matplotlib, and Seaborn for data manipulation and visualization. Here's a sample analysis conducted in the project:
+We use Python libraries such as Pandas, NumPy, Matplotlib, and Seaborn for data manipulation and visualization. The analyses include:
+
+### Hourly Crime Distribution
+Exploring the distribution of crimes by hour to pinpoint peak crime times:
 
 ```python
-#Identifying the number of crimes committed against victims of different age groups.
-#Creating age bins
-bins = [0, 17, 25, 34, 44, 54, 64, np.inf]
-labels = ["0-17", "18-25", "26-34", "35-44", "45-54", "55-64", "65+"]
-# Add a new column using pd.cut() to bin values into discrete intervals
-#setting right to true to include the upper limit on all defined bins
-crimes['Age Group'] = pd.cut(crimes['Vict Age'], bins=bins, labels=labels, right=True)
-victim_ages = crimes['Age Group'].value_counts().sort_index()
+# Visualization of crime frequency by hour
+plt.figure(figsize=(12, 6))
+hour_by_day_counts.plot(kind='bar', color='cyan')
+plt.xlabel('Hour of the Day')
+plt.ylabel('Number of Crimes')
+plt.title('Crime Frequency by Hour')
+plt.xticks(rotation=0)
+plt.show()
 
